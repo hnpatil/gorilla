@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-gorilla
+  namespace: gorilla
+data:
+  VERSION: v1
+  DB_URL: postgresql://gorilla:gorilla@database:5432/gorilla?sslmode=disable
+  AUTH_SECRET: iBcKf16fNhC1H4JcSEZmOnCG8Ki1Dsxm

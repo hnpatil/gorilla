@@ -1,0 +1,35 @@
+name: Build and Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: go.mod
+          check-latest: true
+          cache: true
+          cache-dependency-path: go.sum
+      
+      - name: Generate
+        run: make generate
+      
+      - name: Install dependencies
+        run: make vendors
+
+      - name: Run Lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.55.2
+          args: -v --timeout 10m0s --print-resources-usage
+          skip-go-installation: true
+          skip-pkg-cache: true
+      
+      - name: Build
+        run: go build -o app
+

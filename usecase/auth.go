@@ -33,7 +33,7 @@ func (a *authImpl) GenerateAuthCode(ctx Context, identifier string) error {
 		return err
 	}
 
-	ctx.GetLogger().Infof("Sending auth code %s to user %s", authCode.Code, ctx.GetUserID())
+	ctx.GetLogger().Infof("Sending auth code %s to user %s", authCode.Code, identifier)
 
 	return nil
 }

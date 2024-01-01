@@ -32,15 +32,6 @@ func tonicErrorHook(ctx *gin.Context, err error) (int, interface{}) {
 	return http.StatusInternalServerError, &APIError{Error: err.Error()}
 }
 
-func getUserID(ctx *gin.Context) string {
-	usr, ok := ctx.Get("identifier")
-	if !ok {
-		return ""
-	}
-
-	return usr.(string)
-}
-
 func abortUnauthenticated(ctx *gin.Context) {
 	ctx.JSON(http.StatusUnauthorized, &APIError{Error: "Unauthorized"})
 	ctx.Abort()

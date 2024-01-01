@@ -47,7 +47,9 @@ func (hanlder *Handler) RegisterRoutes() *Handler {
 }
 
 func (handler *Handler) Start(address string) {
-	handler.engine.Run(address)
+	if err := handler.engine.Run(address); err != nil {
+		panic(err.Error())
+	}
 }
 
 type APIError struct {

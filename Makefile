@@ -27,6 +27,18 @@ deploy-all:
 	kubectl apply -f kube/gorilla.yaml
 	kubectl apply -f kube/worker.yaml
 
+.PHONY: delete-all
+delete-all:
+	kubectl delete -f kube/worker.yaml
+	kubectl delete -f kube/gorilla.yaml
+	kubectl delete -f kube/config.yaml
+	kubectl delete -f kube/database.yaml
+	kubectl delete -f kube/namespace.yaml
+
 .PHONY: port-forward
 port-forward:
 	kubectl port-forward service/gorilla 8080:8080 -n gorilla
+
+.PHONY: lint
+lint:
+	golangci-lint run

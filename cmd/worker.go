@@ -9,12 +9,10 @@ import (
 var workerCmd = &cli.Command{
 	Name: "worker",
 	Action: func(ctx *cli.Context) error {
-		for true {
+		for {
 			println("working")
 
 			time.Sleep(time.Second)
 		}
-
-		return nil
 	},
 }

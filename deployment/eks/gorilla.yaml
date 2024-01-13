@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gorilla
+  namespace: gorilla
+  labels:
+    app: gorilla
+    app.kubernetes.io/name: gorilla
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gorilla
+  template:
+    metadata:
+      labels:
+        app: gorilla
+        app.kubernetes.io/name: gorilla
+    spec:
+      containers:
+      - name: gorilla
+        image: 561373210952.dkr.ecr.us-east-1.amazonaws.com/gorilla:latest
+        imagePullPolicy: IfNotPresent
+        args: 
+        - gorilla
+        envFrom:
+        - configMapRef:
+            name: config-gorilla
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gorilla
+  namespace: gorilla
+spec:
+  selector:
+    app.kubernetes.io/name: gorilla
+  ports:
+  - name: gorilla
+    protocol: TCP
+    port: 80
+    targetPort: 8080

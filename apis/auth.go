@@ -17,7 +17,7 @@ func (handler *Handler) registerAuthRoutes() {
 }
 
 type CreateAuthCodeInput struct {
-	Identifier string `json:"identifier" valudate:"required"`
+	Identifier string `json:"identifier" validate:"required"`
 }
 
 func (handler *Handler) handleCreateAuthCode(ctx *gin.Context, input *CreateAuthCodeInput) error {
@@ -25,7 +25,7 @@ func (handler *Handler) handleCreateAuthCode(ctx *gin.Context, input *CreateAuth
 }
 
 type CreateAuthTokenInput struct {
-	AuthCode string `json:"auth_code" valudate:"required"`
+	AuthCode string `json:"auth_code" validate:"required"`
 }
 
 func (handler *Handler) handleCreateAuthToken(ctx *gin.Context, input *CreateAuthTokenInput) (*usecase.Token, error) {

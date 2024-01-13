@@ -12,3 +12,6 @@
 
 !/entity/generate.go
 !/entity/schema/
+
+
+/infra/*.terraform*

@@ -32,5 +32,5 @@ Here is a list of all available make targets:
 
 - `generate`: Generate golang code
 - `build-app`: Build docker image
-- `deploy-all`: Deploy all apps to kubernetes
+- `lint`: Carry out linting
 - `port-forward`: Port forward to api server at port 8080
